@@ -1,0 +1,81 @@
+<div class="card" style="width: 1200px">
+  <h3>Listing Invoice</h3>
+  <div class="card-header">
+    <a class="btn btn-success" routerLink="createinvoice">Create New [+]</a>
+  </div>
+  <div class="card-body">
+    <table
+      datatable
+      [dtOptions]="dtoptions"
+      [dtTrigger]="dtTrigger"
+      class="table table-bordered"
+    >
+      <thead class="bg-dark text-white">
+        <tr>
+          <td>Invoice No</td>
+          <td>Customer</td>
+          <td>Remarks</td>
+          <td>Total</td>
+          <td>Tax</td>
+          <td>NetTotal</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of Invoiceheader">
+          <tr *ngIf="selectedInvoice !== item; else editRow">
+            <td>{{ item.invoiceNo }}</td>
+            <td>{{ item.customerId }}</td>
+            <td>{{ item.remarks }}</td>
+            <td>{{ item.total | currency }}</td>
+            <td>{{ item.tax | currency }}</td>
+            <td>{{ item.netTotal | currency }}</td>
+            <td style="width: 30%">
+              <a class="btn btn-primary" (click)="Editinvoice(item)">Edit</a> |
+              <a class="btn btn-danger" (click)="invoiceremove(item)">Delete</a>
+              |
+              <a class="btn btn-success" (click)="PreviewInvoice(item)"
+                >Print</a
+              >
+              |
+              <a class="btn btn-success" (click)="DownloadInvoice(item)"
+                >Download</a
+              >
+            </td>
+          </tr>
+          <ng-template #editRow>
+            <tr>
+              <td>
+                <input
+                  [(ngModel)]="item.invoiceNo"
+                  class="form-control"
+                  disabled
+                />
+              </td>
+              <td>
+                <input [(ngModel)]="item.customerId" class="form-control" />
+              </td>
+              <td>
+                <input [(ngModel)]="item.remarks" class="form-control" />
+              </td>
+              <td>
+                <input [(ngModel)]="item.total" class="form-control" />
+              </td>
+              <td>
+                <input [(ngModel)]="item.tax" class="form-control" />
+              </td>
+              <td>
+                <input [(ngModel)]="item.netTotal" class="form-control" />
+              </td>
+              <td style="width: 30%">
+                <a class="btn btn-success" (click)="SaveInvoice(item)">Save</a>
+                |
+                <a class="btn btn-danger" (click)="CancelEdit(item)">Cancel</a>
+              </td>
+            </tr>
+          </ng-template>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
