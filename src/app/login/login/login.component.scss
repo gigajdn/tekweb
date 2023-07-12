@@ -36,7 +36,7 @@ $color-dropdown-bg: #f9f9f9; // Dropdown background color
     }
 
     button {
-      background-color: #5f1fa7;
+      background-color: #730808;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -45,7 +45,7 @@ $color-dropdown-bg: #f9f9f9; // Dropdown background color
       width: 100%;
 
       &:hover {
-        background-color: darken(#5f1fa7, 10%);
+        background-color: darken(#730808, 10%);
       }
     }
     .btn {

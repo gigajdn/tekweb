@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
+  name!: any
 
   constructor(private router: Router) {}
 
@@ -15,8 +16,12 @@ export class UserComponent {
   }
 
   auth() {    
-    if (localStorage.getItem('role') !== "user"){
+    if (localStorage.getItem('role') !== "user"){      
       this.router.navigate(['/login']);
     }    
+    else {
+      this.name=localStorage.getItem('role');
+    }
   }
+
 }

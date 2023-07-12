@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+  name!: any
  
   constructor(private router: Router) {}
 
@@ -18,6 +19,9 @@ export class AdminComponent implements OnInit {
     if (localStorage.getItem('role') !== "admin"){
       this.router.navigate(['/login']);
     }    
+    else {
+      this.name=localStorage.getItem('role');
+    }
   }
 
   

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductInputService } from './product-input.service';
+import { Router } from '@angular/router';
 import { Product } from '../product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './popup.component';
@@ -7,12 +8,20 @@ import { PopupComponent } from './popup.component';
 @Component({
   selector: 'app-product-input',
   templateUrl: './product-input.component.html',
-  styleUrls: ['./product-input.component.scss']
+  styleUrls: ['./product-input.component.scss'],
 })
 export class ProductInputComponent {
   product: Product = new Product();
 
-  constructor(private productService: ProductInputService, private dialog: MatDialog) {}
+  constructor(
+    private productService: ProductInputService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
+
+  reloadPage() {
+    window.location.reload();
+  }
 
   onSubmit() {
     const formData = new FormData();
@@ -29,7 +38,7 @@ export class ProductInputComponent {
         // Reset the form or perform any other actions after successful submission
         this.openPopup();
       },
-      error => {
+      (error) => {
         console.log('Error submitting product:', error);
         // Handle error scenarios
       }
@@ -44,12 +53,12 @@ export class ProductInputComponent {
   openPopup() {
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '300px',
-      data: { name: this.product.name } // Pass the name as data to the pop-up dialog
+      data: { name: this.product.name }, // Pass the name as data to the pop-up dialog
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('Popup closed', result);
+      this.reloadPage();
     });
   }
 }
-

@@ -11,8 +11,8 @@ import { BuyComponent } from './product/buy/buy.component';
 
 const routes: Routes = [   
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'admin/add',        component:ProductInputComponent},
-  { path: 'admin/list',        component:ProductListComponent},
+  // { path: 'admin/add',        component:ProductInputComponent},
+  // { path: 'admin/list',        component:ProductListComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'user/dashboard', component: UserComponent },
